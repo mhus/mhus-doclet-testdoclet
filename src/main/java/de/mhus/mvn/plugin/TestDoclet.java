@@ -99,7 +99,7 @@ public class TestDoclet implements Doclet {
             String indent = "  ".repeat(depth);
             out.println(indent + "# "
                     + t.getKind() + " "
-                    + t.toString().replace("\n", "\n" + indent + "#    "));
+                    + t.toString().replace("\n", "\n" + indent + "##   "));
             return super.scan(t, depth + 1);
         }
     }

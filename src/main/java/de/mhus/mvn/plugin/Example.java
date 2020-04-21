@@ -1,5 +1,7 @@
 package de.mhus.mvn.plugin;
 
+import javax.annotation.processing.SupportedOptions;
+
 /**
  * Before Class.
  * 
@@ -8,15 +10,28 @@ package de.mhus.mvn.plugin;
  * @author mikehummel
  *
  */
+@SupportedOptions("options")
 public class Example {
 
 	/**
-	 * This is a Parameter.
+	 * This is a Parameter {@link java.lang.String}.
 	 */
-	private String parameter;
+	public String parameter;
 	
 	/**
 	 * Constructor
+	 * 
+	 * New Line
+	 * 
+	 * {@code 
+	 * Code
+	 * } 
+	 * {@docRoot docRoot} 
+	 * {@inheritDoc inheritDoc} 
+	 * {@linkplain link plain} 
+	 * {@link link} 
+	 * {@literal literal} 
+	 * {@value value}
 	 * 
 	 * @param in Constructor Parameter
 	 * @exception Exception
