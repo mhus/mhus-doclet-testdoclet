@@ -12,6 +12,7 @@ import javax.lang.model.element.Element;
 
 import com.sun.source.doctree.DocCommentTree;
 import com.sun.source.doctree.DocTree;
+import com.sun.source.doctree.DocTree.Kind;
 import com.sun.source.util.DocTreeScanner;
 import com.sun.source.util.DocTrees;
 
@@ -21,7 +22,6 @@ import jdk.javadoc.doclet.Reporter;
 
 public class TestDoclet implements Doclet {
 
-	private DocletEnvironment env;
 	private DocTrees treeUtils;
 
 	@Override
@@ -62,10 +62,8 @@ public class TestDoclet implements Doclet {
 	@Override
 	public boolean run(DocletEnvironment environment) {
 		System.out.println("RUN");
-		env = environment;
 		treeUtils = environment.getDocTrees();
 		dump("",environment.getSpecifiedElements());
-		env = null;
 		return true;
 	}
 
@@ -99,7 +97,9 @@ public class TestDoclet implements Doclet {
             String indent = "  ".repeat(depth);
             out.println(indent + "# "
                     + t.getKind() + " "
-                    + t.toString().replace("\n", "\n" + indent + "##   "));
+                    + (t.getKind() != Kind.DOC_COMMENT 
+                            ? t.toString().replace("\n", "\n" + indent + "##   ") 
+                            : "" ));
             return super.scan(t, depth + 1);
         }
     }
